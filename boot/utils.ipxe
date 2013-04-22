@@ -6,7 +6,7 @@ item --gap Utilities:
 item clonezilla ${space} Clonezilla
 item hdt ${space} Hardware Detection Tool
 item memtest ${space} MemTest86+
-choose --timeout ${timeout} --default ${menu} menu || goto utils_exit
+choose --default ${menu} menu || goto utils_exit
 echo ${cls}
 goto ${menu} ||
 chain ${menu}.ipxe || goto error
