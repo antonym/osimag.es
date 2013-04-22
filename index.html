@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>osimag.es by amesserl</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>osimag.es</h1>
+        <p>A collection of iPXE scripts that powers boot.osimag.es.  It's a fast way to netboot any of your favorite operating systems.</p>
+
+        <p class="view"><a href="https://github.com/amesserl/osimag.es">View the Project on GitHub <small>amesserl/osimag.es</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/amesserl/osimag.es/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/amesserl/osimag.es/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/amesserl/osimag.es">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>boot.osimag.es</h2>
+
+<h3>What is boot.osimag.es?</h3>
+
+<p>boot.osimag.es is a collection of iPXE scripts that allow you to rapidly network boot Operating Systems, Utilities and other tools very easily.  It allows you the flexibility of booting installations without having to go download the entire installation media.  It's especially useful for environments when you don't want to utilize a Virtual CD in a Dell DRAC, HP iLO or some other type of remote tool.  It's a quick installation menu available anywhere on any system.  </p>
+
+<h3>Getting started</h3>
+
+<h4>NIC with Embedded iPXE</h4>
+
+<p>If your system has iPXE integrated in your network cards ROM, you can enter iPXE's CLI by entering CTRL-B when prompted and then load boot.osimag.es by doing:</p>
+
+<pre><code>dhcp
+chain http://boot.osimag.es/menu.ipxe
+</code></pre>
+
+<p>If you don't have DHCP on your network, you can manually set your network information:</p>
+
+<pre><code>set net0/ip &lt;IP&gt;
+set net0/netmask &lt;netmask&gt;
+set net0/gateway &lt;gateway&gt;
+set dns &lt;nameserver&gt;
+ifopen net0
+chain http://boot.osimag.es/menu.ipxe
+</code></pre>
+
+<h4>Boot from iPXE ISO</h4>
+
+<p>Obtain ISO image here: </p>
+
+<pre><code>wget http://boot.osimag.es/ipxe/ipxe.iso
+</code></pre>
+
+<p>To create a bootable CD-ROM, burn the ISO image ipxe.iso (1MB in size) to a blank CD-ROM.  You can also use this ISO file as a virtual CD device in Citrix XenServer, VMware ESXi, VMware Fusion, VirtualBox, or even in a Dell DRAC or HP iLOs virtual CD drive.</p>
+
+<h4>Boot from iPXE USB</h4>
+
+<p>Obtain DSK image here:</p>
+
+<pre><code>wget http://boot.osimag.es/ipxe/ipxe.dsk
+</code></pre>
+
+<p><em>Warning: Backup your important data before using USB as it will overwrite anything on the USB key.</em></p>
+
+<p>Insert a USB disk, find it's device name of USB. Then use following command: </p>
+
+<pre><code>cat ipxe.dsk &gt; /dev/sdX 
+</code></pre>
+
+<p>or</p>
+
+<pre><code>dd if=ipxe.dsk of=/dev/sdX 
+</code></pre>
+
+<p>where sdX is your usb drive.  Substitute /dev/sdX for /dev/fd0 in the case of using a floppy.</p>
+
+<h4>Updates to boot.osimag.es menus</h4>
+
+<p>Pull requests are welcome and encouraged.  Feel free to issue a pull request for new versions or tools that you might find useful.  boot.osimag.es will be deployed automatically with the latest github changes once they've been accepted.</p>
+
+<h4>iPXE Images</h4>
+
+<p>All iPXE boot images are regenerated every time a commit occurs to the <a href="https://github.com/ipxe/ipxe">iPXE project on Github</a> so that the images always have the latest and greatest updates.  It's merged with the <a href="https://github.com/osimages/ipxe/tree/osimages">osimages branch</a> with the only deviations right now being the menu <a href="https://github.com/osimages/ipxe/blob/osimages/src/config/colour.h">color scheme</a>.  The images are generated and embedded with these <a href="https://github.com/amesserl/osimag.es/tree/master/ipxe">scripts</a>.</p>
+
+<ul>
+<li>
+<a href="https://github.com/amesserl/osimag.es/tree/master/ipxe/boot.osimag.es-main">boot.osimag.es-main</a> - Uses DHCP</li>
+<li>
+<a href="https://github.com/amesserl/osimag.es/tree/master/ipxe/boot.osimag.es-static">boot.osimag.es-static</a> - Uses Static only</li>
+<li>
+<a href="https://github.com/amesserl/osimag.es/tree/master/ipxe/boot.osimag.es-prompt">boot.osimag.es-prompt</a> - Prompts what type of network you want to boot. [ TODO ]</li>
+</ul><h4>What Operating Systems are currently available on boot.osimag.es?</h4>
+
+<ul>
+<li>ArchLinux</li>
+<li>CentOS</li>
+<li>Debian</li>
+<li>Fedora</li>
+<li>Gentoo</li>
+<li>OpenSUSE</li>
+<li>TinyCoreLinux</li>
+<li>Ubuntu</li>
+<li>Windows 2012 Preinstallation Environment [Experimental, not of use to anyone except me yet]</li>
+</ul><h4>What Utilities are currently available on boot.osimag.es?</h4>
+
+<ul>
+<li><a href="http://www.clonezilla.org/">Clonezilla</a></li>
+<li><a href="http://www.hdt-project.org/">HDT</a></li>
+<li><a href="http://www.memtest.org/">Memtest</a></li>
+</ul><h4>Updates to boot.osimag.es menus</h4>
+
+<p>Pull requests are welcome and encouraged.  Feel free to issue a pull request for new versions or tools that you might find useful.  boot.osimag.es will be deployed automatically with the latest github changes once they've been accepted.</p>
+
+<h4>TODO</h4>
+
+<ul>
+<li>Add some of the more popular network and storage appliances to the menu.</li>
+<li>More work on the main iPXE scripts that are generated.</li>
+<li>Add Hypervisors like XenServer and ESX, have to break them down so that they aren't so large and figure out where to host.</li>
+<li>Add menu for other iPXE menus on the internet, would love to use this as a starting point to discover others menus.</li>
+</ul><h4>Contact</h4>
+
+<p>I can be contacted at [ antony at mes dot ser dot li ].</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/amesserl">amesserl</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-68807-11");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
