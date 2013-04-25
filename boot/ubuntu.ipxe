@@ -10,7 +10,7 @@ set debmirror http://mirror.rackspace.com/ubuntu/
 
 set os Ubuntu
 menu ${os} ${arch_a}
-item raring ${os} 13.04 Raring Ringtail (Beta)
+item raring ${os} 13.04 Raring Ringtail
 item quantal ${os} 12.10 Quantal Quetzal
 item precise ${os} 12.04 LTS Precise Pangolin
 item oneiric ${os} 11.10 Oneiric Ocelot
