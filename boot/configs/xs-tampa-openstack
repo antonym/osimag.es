@@ -1,0 +1,8 @@
+DEFAULT xs-tampa-openstack
+PROMPT 1
+TIMEOUT 50
+
+label xs-tampa-openstack
+        menu label XenServer 6.1 Tampa - Openstack
+        kernel http://boot.osimag.es/hypervisors/xenserver/xs-tampa-openstack/citrix/tampa/boot/isolinux/mboot.c32
+        append http://boot.osimag.es/hypervisors/xenserver/xs-tampa-openstack/citrix/tampa/boot/xen.gz noreboot watchdog com1=115200,8n1 console=com1,tty --- http://boot.osimag.es/hypervisors/xenserver/xs-tampa-openstack/citrix/tampa/boot/vmlinuz console=ttyS0,115200n8 console=tty0 answerfile=http://boot.osimag.es/hypervisors/xenserver/xs-tampa-openstack/answerfiles/tampa-answerfile install --- http://boot.osimag.es/hypervisors/xenserver/xs-tampa-openstack/citrix/tampa/install.img

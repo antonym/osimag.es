@@ -1,0 +1,28 @@
+#!ipxe
+
+goto ${menu} ||
+
+:hypervisors_menu
+
+menu Hypervisors
+iseq ${arch} x86_64 && set arch_a amd64 || set arch_a ${arch}
+
+# RPM based systems
+item --gap Citrix XenServer
+item xs-tampa-openstack ${space} XenServer 6.1 Tampa - Openstack
+
+choose menu || goto hypervisors_exit
+echo ${cls}
+goto ${menu} ||
+chain ${menu}.ipxe || goto error
+goto hypervisors_exit
+
+:hypervisors_exit
+clear menu
+chain menu.ipxe
+
+:xs-tampa-openstack
+set 210:string http://boot.osimag.es/ || goto error
+set 209:string configs/xs-tampa-openstack || goto error
+chain ${210:string}pxelinux.0 || goto error
+goto hypervisors_menu
