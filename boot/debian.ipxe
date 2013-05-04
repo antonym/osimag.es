@@ -10,8 +10,9 @@ set debmirror http://mirror.rackspace.com/debian/
 
 set os Debian
 menu ${os} ${arch_a}
-item squeeze ${os} squeeze (stable)
-item wheezy ${os} wheezy (testing)
+item wheezy ${os} 7.0 (wheezy)
+item squeeze ${os} 6.0 (squeeze)
+item jessie ${os} jessie (testing)
 item sid ${os} sid (unstable) 
 choose version || goto debian_exit
 
