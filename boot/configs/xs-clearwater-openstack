@@ -1,0 +1,8 @@
+DEFAULT xs-clearwater-openstack
+PROMPT 1
+TIMEOUT 50
+
+label xs-clearwater-openstack
+        menu label XenServer 6.1 Tampa - Openstack
+        kernel http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/isolinux/mboot.c32
+        append http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/xen.gz noreboot watchdog com1=115200,8n1 console=com1,tty --- http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/vmlinuz console=ttyS0,115200n8 console=tty0 answerfile=http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/answerfiles/clearwater-answerfile install --- http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/install.img
