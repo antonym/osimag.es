@@ -26,7 +26,7 @@ clear menu
 chain menu.ipxe
 
 :xs-clearwater-openstack
-kernel http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/xen noreboot watchdog com1=115200,8n1 console=com1,vga
+kernel http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/xen noreboot watchdog com1=115200,8n1 console=com1,vga tdt=off
 module http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/vmlinuz console=ttyS0,115200n8 console=tty0 answerfile=http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/answerfiles/clearwater-answerfile install
 module http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/install.img
 boot
