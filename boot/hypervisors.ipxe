@@ -7,7 +7,10 @@ goto ${menu} ||
 menu Hypervisors
 iseq ${arch} x86_64 && set arch_a amd64 || set arch_a ${arch}
 
-# RPM based systems
+# Citrix XenServer Hypervisor
+# In order to use without pxelinux.0, you have to gunzip xen.gz and vmlinuz and point to the uncompressed versions
+# in order for iPXE to load.  You'll also need to have COMBOOT compiled into iPXE.
+
 item --gap Citrix XenServer
 item xs-clearwater-openstack ${space} XenServer 6.2 Clearwater - Openstack
 item xs-tampa-openstack ${space} XenServer 6.1 Tampa - Openstack
@@ -23,9 +26,10 @@ clear menu
 chain menu.ipxe
 
 :xs-clearwater-openstack
-set 210:string http://boot.osimag.es/ || goto error
-set 209:string configs/xs-clearwater-openstack || goto error
-chain ${210:string}pxelinux.0 || goto error
+kernel http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/xen noreboot watchdog com1=115200,8n1 console=com1,vga
+module http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/boot/vmlinuz console=ttyS0,115200n8 console=tty0 answerfile=http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/answerfiles/clearwater-answerfile install
+module http://boot.osimag.es/hypervisors/xenserver/xs-clearwater-openstack/citrix/clearwater/install.img
+boot
 goto hypervisors_menu
 
 :xs-tampa-openstack
