@@ -27,6 +27,7 @@ item --gap Other Linux Distributions
 item archlinux ${space} ArchLinux
 item gentoo ${space} Gentoo
 item tinycore ${space} TinyCoreLinux
+item coreos ${space} CoreOS
 
 # Options
 item --gap Options:
@@ -66,4 +67,8 @@ goto linux_menu
 
 :opensuse
 chain opensuse.ipxe
+goto linux_menu
+
+:coreos
+chain coreos.ipxe
 goto linux_menu
