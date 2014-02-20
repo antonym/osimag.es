@@ -4,17 +4,18 @@
 # http://coreos.com/
 
 set mirror http://storage.core-os.net/coreos/amd64-generic
+set channel dev-channel
 
 :coreos_menu
 menu CoreOS
-item 72.0.0 CoreOS 72.0.0
+item ${channel} CoreOS ${channel}
 choose version || goto coreos_exit
 set base-url ${mirror}/${version}
-goto 72.0.0
+goto ${channel}
 
 echo ${cls}
 
-:72.0.0
+:${channel}
 kernel ${base-url}/coreos_production_pxe.vmlinuz
 module ${base-url}/coreos_production_pxe_image.cpio.gz
 imgargs coreos_production_pxe.vmlinuz root=squashfs: state=tmpfs: sshkey=""
